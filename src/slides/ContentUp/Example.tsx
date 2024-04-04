@@ -3,21 +3,27 @@ import { Highlight } from '../../Components/Highlight';
 
 export function ContentUp() {
     return (
-        <div className="h-full w-full p-6 text-pink" data-transition="fade-in slide-out">
+        <div className="relative h-full w-full p-6 text-pink" data-transition="fade-in slide-out">
+            <p className="absolute left-8 top-2 text-xl">eksempel content up</p>
             <ComponentA />
         </div>
     );
 }
 
-export const codeComponentA = `const ComponentA = () => {
+export const codeComponentA = `
+const ComponentA = () => {
+
     console.log('A');
+
+    const c = { data: 'C' };
 
     return (
         <div>
             <div>
-                <!-- Other compontent sub-trees -->
+                <ComponentB>
+                    <ComponentC c={c} />
+                </ComponentB>
             </div>
-            <ComponentB />
         </div>
     );
 };`;
@@ -39,30 +45,26 @@ const ComponentA = () => {
     );
 };
 
-export const codeComponentB = `const ComponentB = ({ value }) => {
+export const codeComponentB = `
+const ComponentB = ({ children }) => {
     const [count, setCount] = useState(0);
 
     console.log('B');
-
-    const c = { data: 'C' };
 
     return (
         <div>
             <div>
                 <p>{count}</p>
-            </div>
-            <div>
                 <button
                     onClick={() => setCount(count + 1)}
                 >
-                    Oppdater state
+                    Count
                 </button>
             </div>
-            <ComponentC c={c} />
+            {children}
         </div>
     );
-};
-`;
+};`;
 
 const ComponentB = ({ children }) => {
     const [count, setCount] = useState(0);

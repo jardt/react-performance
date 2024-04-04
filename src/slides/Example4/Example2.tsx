@@ -1,46 +1,38 @@
-import { useCallback, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Highlight } from '../../Components/Highlight';
 
-export function Example5() {
+export function Example4_2() {
     return (
-        <div className="h-full w-full p-6 text-pink">
+        <div className="relative h-full w-full p-6 text-pink" data-transition="fade-in slide-out">
+            <p className="absolute left-8 top-2 text-xl">eksempel memoise 2</p>
             <ComponentA />
         </div>
     );
 }
 
 export const codeComponentA = `const ComponentA = () => {
-    const [state, setState] = useState(0);
+    const [count, setCount] = useState(0);
 
     console.log('A');
-
-    const clickButton = useCallback(() => {
-        setState(state + 1);
-    }, [setState, state]);
 
     return (
         <div>
             <div>
-                <div>
-                    <button
-                        onClick={() => clickButton()}
-                    >
-                        Oppdater state
-                    </button>
-                </div>
+                <button
+                    onClick={() => setCount(count + 1)}
+                >
+                    Tell opp
+                </button>
             </div>
-            <ComponentB value={state} />
+            <ComponentB count={count} />
         </div>
     );
 };`;
 
 const ComponentA = () => {
-    console.log('A');
-    const [state, setState] = useState(0);
+    const [count, setCount] = useState(0);
 
-    const clickButton = useCallback(() => {
-        setState(state + 1);
-    }, [setState, state]);
+    console.log('A');
 
     return (
         <div className="h-full w-full border-4 border-dotted border-red p-2 ">
@@ -49,56 +41,56 @@ const ComponentA = () => {
                 <div>
                     <button
                         className="h-12 bg-lavender text-lg capitalize text-black"
-                        onClick={() => clickButton()}
+                        onClick={() => setCount(count + 1)}
                     >
-                        Oppdater state
+                        Tell opp
                     </button>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center gap-12">
-                <ComponentB value={state} />
+                <ComponentB count={count} />
             </div>
         </div>
     );
 };
 
-export const codeComponentB = `const ComponentB = ({ value }) => {
+export const codeComponentB = `const ComponentB = memo(({ count }) => {
     console.log('B');
 
     const c = useMemo(() => ({ data: 'C' }), []);
 
     return (
         <div>
-            <div>
-                <p>{value}</p>
-            </div>
+            <p>{count}</p>
             <ComponentC c={c} />
         </div>
     );
-};`;
+});
+`;
 
-const ComponentB = ({ value }) => {
+const ComponentB = memo(({ count }) => {
     console.log('B');
     const c = useMemo(() => ({ data: 'C' }), []);
     return (
         <div className="flex h-min flex-row gap-4 border-4 border-dotted border-green p-4">
             <Highlight style="w-30 scale-[0.80]" code={codeComponentB}></Highlight>
-            <p className="m-0 p-0 text-center">{value}</p>
+            <p className="m-0 p-0 text-center">{count}</p>
             <ComponentC c={c} />
         </div>
     );
-};
+});
 
-export const codeComponentC = `const ComponentC = ({ c }) => {
+export const codeComponentC = `
+const ComponentC = memo(({ c }) => {
     console.log('C');
     return (
-        <div> 
+        <div>
             <p>{c.data}</p>
         </div>
     );
-};`;
+});`;
 
-const ComponentC = ({ c }) => {
+const ComponentC = memo(({ c }) => {
     console.log('C');
     return (
         <div className="flex h-min flex-row border-4 border-dotted border-blue p-4">
@@ -106,4 +98,4 @@ const ComponentC = ({ c }) => {
             <p className="m-0 p-0">{c.data}</p>
         </div>
     );
-};
+});

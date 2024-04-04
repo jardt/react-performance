@@ -3,46 +3,53 @@ import { Highlight } from '../../Components/Highlight';
 
 export function Example3() {
     return (
-        <div className="h-full w-full p-6 text-pink">
+        <div className="relative h-full w-full p-6 text-pink">
+            <p className="absolute left-8 top-2 text-xl">eksempel 3</p>
             <ComponentA />
         </div>
     );
 }
 
-export const codeComponentA = `const ComponentA = () => {
-    const [state, setState] = useState(0);
+export const codeComponentA = `
+const ComponentA = () => {
+    const [count, setCount] = useState(0);
+
+    console.log('A');
 
     const clickButton = useCallback(() => {
-        setState((prevState) => prevState + 1);
-    }, [setState]);
+        setCount((previousCount) => previousCount + 1);
+    }, [setCount]);
 
-    const value = useMemo(() => state, [state]);
+    const memoCount = useMemo(() => count, [count]);
+
     return (
         <div>
             <div>
-                <div>
-                    <button
-                        onClick={() => clickButton()}
-                    >
-                        Oppdater state
-                    </button>
-                </div>
+                <button
+                    onClick={() => clickButton()}
+                >
+                    Tell opp
+                </button>
+                <p>{memoCount}</p>
             </div>
-            <p>{value}</p>
-            <ComponentB />
+            <div>
+                <ComponentB />
+            </div>
         </div>
     );
-};`;
+};
+`;
 
 const ComponentA = () => {
+    const [count, setCount] = useState(0);
+
     console.log('A');
-    const [state, setState] = useState(0);
 
     const clickButton = useCallback(() => {
-        setState((prevState) => prevState + 1);
-    }, [setState]);
+        setCount((previousCount) => previousCount + 1);
+    }, [setCount]);
 
-    const value = useMemo(() => state, [state]);
+    const memoCount = useMemo(() => count, [count]);
 
     return (
         <div className="h-full w-full border-4 border-dotted border-red p-2 ">
@@ -53,9 +60,9 @@ const ComponentA = () => {
                         className="h-12 bg-lavender text-lg capitalize text-black"
                         onClick={() => clickButton()}
                     >
-                        Oppdater state
+                        Tell opp
                     </button>
-                    <p>{value}</p>
+                    <p>{memoCount}</p>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center gap-12">

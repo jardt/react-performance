@@ -3,20 +3,21 @@ import { Highlight } from '../../Components/Highlight';
 
 export function Example2() {
     return (
-        <div className="h-full w-full p-6 text-pink">
+        <div className="relative h-full w-full p-6 text-pink">
+            <p className="absolute left-8 top-2 text-xl">eksempel 2</p>
             <ComponentA />
         </div>
     );
 }
 
 export const codeComponentA = `const ComponentA = () => {
-    const [state, setState] = useState(0);
+    const [count, setCount] = useState(0);
 
     console.log('A');
 
     const clickButton = useCallback(() => {
-        setState(state + 1);
-    }, [setState, state]);
+        setCount(count + 1);
+    }, [setCount, count]);
 
     return (
         <div>
@@ -25,22 +26,22 @@ export const codeComponentA = `const ComponentA = () => {
                     <button
                         onClick={() => clickButton()}
                     >
-                        Oppdater state
+                        Tell opp
                     </button>
                 </div>
             </div>
-            <ComponentB value={state} />
+            <ComponentB count={count} />
         </div>
     );
 };`;
 
 const ComponentA = () => {
     console.log('A');
-    const [state, setState] = useState(0);
+    const [count, setCount] = useState(0);
 
     const clickButton = useCallback(() => {
-        setState(state + 1);
-    }, [setState, state]);
+        setCount(count + 1);
+    }, [setCount, count]);
 
     return (
         <div className="h-full w-full border-4 border-dotted border-red p-2 ">
@@ -51,18 +52,18 @@ const ComponentA = () => {
                         className="h-12 bg-lavender text-lg capitalize text-black"
                         onClick={() => clickButton()}
                     >
-                        Oppdater state
+                        Tell opp
                     </button>
                 </div>
             </div>
             <div className="flex flex-wrap justify-center gap-12">
-                <ComponentB value={state} />
+                <ComponentB count={count} />
             </div>
         </div>
     );
 };
 
-export const codeComponentB = `const ComponentB = ({ value }) => {
+export const codeComponentB = `const ComponentB = ({ count }) => {
     console.log('B');
 
     const c = useMemo(() => ({ data: 'C' }), []);
@@ -70,20 +71,20 @@ export const codeComponentB = `const ComponentB = ({ value }) => {
     return (
         <div>
             <div>
-                <p>{value}</p>
+                <p>{count}</p>
             </div>
             <ComponentC c={c} />
         </div>
     );
 };`;
 
-const ComponentB = ({ value }) => {
+const ComponentB = ({ count }) => {
     console.log('B');
     const c = useMemo(() => ({ data: 'C' }), []);
     return (
         <div className="flex h-min flex-row gap-4 border-4 border-dotted border-green p-4">
             <Highlight style="w-30 scale-[0.80]" code={codeComponentB}></Highlight>
-            <p className="m-0 p-0 text-center">{value}</p>
+            <p className="m-0 p-0 text-center">{count}</p>
             <ComponentC c={c} />
         </div>
     );

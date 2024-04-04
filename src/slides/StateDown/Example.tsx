@@ -3,7 +3,8 @@ import { Highlight } from '../../Components/Highlight';
 
 export function StateDown() {
     return (
-        <div className="h-full w-full p-6 text-pink" data-transition="fade-in slide-out">
+        <div className="relative h-full w-full p-6 text-pink" data-transition="fade-in slide-out">
+            <p className="absolute left-8 top-2 text-xl">eksempel state down</p>
             <ComponentA />
         </div>
     );

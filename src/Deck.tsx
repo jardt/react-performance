@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
-import RevealHighlight from 'reveal.js/plugin/highlight/highlight';
+import RevealNotes from 'reveal.js/plugin/notes/notes';
 import RevealMarkdown from 'reveal.js/plugin/markdown/markdown';
 
 export function Deck({ children }: { children: ReactNode }) {
@@ -15,7 +15,7 @@ export function Deck({ children }: { children: ReactNode }) {
 
         deckRef.current = new Reveal(deckDivRef.current!, {
             disableLayout: false,
-            plugins: [RevealMarkdown],
+            plugins: [RevealMarkdown, RevealNotes],
         });
 
         deckRef.current

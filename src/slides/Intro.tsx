@@ -5,10 +5,11 @@ export function Intro() {
         <>
             <section className="flex h-full">
                 <img src={imgUrl} />
+                <aside className="notes">Shhh, these are your private notes 📝</aside>
             </section>
             <section className="flex h-full">
                 <div className="flex h-full flex-col items-center justify-center">
-                    <p className="m-20 h-max w-3/4 text-4xl font-extrabold leading-relaxed text-teal antialiased">
+                    <p className="m-20 h-max w-3/4 text-6xl font-extrabold leading-relaxed text-teal antialiased">
                         Kva er performance?
                     </p>
                     <p className="m-20 h-max w-3/4 text-4xl font-extrabold leading-relaxed text-yellow antialiased">
@@ -19,10 +20,11 @@ export function Intro() {
                         setter grenser for
                     </p>
                 </div>
+                <aside className="notes">Notes 2</aside>
             </section>
             <section className="flex h-full">
                 <div className="flex h-full flex-col items-center justify-center">
-                    <p className="m-20 h-max w-3/4 text-4xl font-extrabold leading-relaxed text-peach antialiased">
+                    <p className="m-20 h-max w-3/4 text-6xl font-extrabold leading-relaxed text-peach antialiased">
                         React er relativt god til jobben sin, så performance er ofte ikkje eit
                         problem
                     </p>
@@ -36,20 +38,32 @@ export function Intro() {
             </section>
             <section className="flex h-full">
                 <div className="flex h-full flex-col items-center justify-center">
+                    <p className="m-20 h-max w-3/4 text-6xl font-extrabold leading-relaxed text-rosewater antialiased">
+                        Performance problem er også kan oppstå gradvis over tid
+                    </p>
                     <p className="m-20 h-max w-3/4 text-4xl font-extrabold leading-relaxed text-mauve antialiased">
                         <span>Mange </span>
                         <span className="text-sm">frontend </span>
                         <span>
-                            utviklerere er flinke til å følge normer, og ein gjør gjerne ting som
-                            ein ikkje heilt veit grunnen til ein gjør
+                            utviklerere er flinke til å følge normer, og ein gjer gjerne ting som er
+                            vanlig uten og vite kvifor
                         </span>
                     </p>
-                    <p className="m-20 h-max w-3/4 text-2xl font-extrabold leading-relaxed text-rosewater antialiased">
-                        Performance problem er også kan oppstå gradvis over tid
+                    <p className="m-20 h-max w-3/4 text-6xl font-extrabold leading-relaxed text-green antialiased">
+                        Kunnskap er performance!
                     </p>
-                    <p className="m-20 h-max w-3/4 text-4xl font-extrabold leading-relaxed text-white antialiased">
-                        Kunnskap om korleis ting fungerer og grunnen til å gjere/ikkje gjere noko er
-                        performance!
+                </div>
+            </section>
+            <section className="flex h-full">
+                <div className="flex h-full flex-col items-center justify-center">
+                    <p className="m-20 h-max w-3/4 text-6xl font-extrabold leading-relaxed text-yellow antialiased">
+                        Som utviklere har me mykje kontroll over arbeid
+                    </p>
+                    <p className="m-20 h-max w-3/4 text-2xl font-extrabold leading-relaxed text-blue antialiased">
+                        Umiddelbart arbeid for programmet ein lager
+                    </p>
+                    <p className="m-20 h-max w-3/4 text-2xl font-extrabold leading-relaxed text-teal antialiased">
+                        Men og vedlikeholdsarbeid for framtidige utviklere
                     </p>
                 </div>
             </section>
